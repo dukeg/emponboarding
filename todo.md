@@ -88,3 +88,12 @@
 
 ## Completed Items
 (None yet)
+
+## Biometric Authentication (NEW)
+- [x] Implement biometric authentication context with Face ID / Fingerprint
+- [x] Create biometric login screen with fallback to password
+- [x] Add biometric settings screen in app
+- [x] Store biometric preference in secure storage
+- [x] Implement biometric error handling and retry logic
+- [x] Add biometric availability detection for different devices
+- [ ] Test biometric flows on iOS and Android

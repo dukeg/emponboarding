@@ -20,6 +20,7 @@ import { trpc, createTRPCClient } from "@/lib/trpc";
 import { initManusRuntime, subscribeSafeAreaInsets } from "@/lib/_core/manus-runtime";
 import { AuthProvider, useAuth } from "@/lib/auth-context";
 import { OnboardingProvider } from "@/lib/onboarding-context";
+import { BiometricProvider } from "@/lib/biometric-context";
 import * as SplashScreen from "expo-splash-screen";
 
 SplashScreen.preventAutoHideAsync();
@@ -110,12 +111,14 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <OnboardingProvider>
-              <RootLayoutNav />
-              <StatusBar style="auto" />
-            </OnboardingProvider>
-          </AuthProvider>
+          <BiometricProvider>
+            <AuthProvider>
+              <OnboardingProvider>
+                <RootLayoutNav />
+                <StatusBar style="auto" />
+              </OnboardingProvider>
+            </AuthProvider>
+          </BiometricProvider>
         </QueryClientProvider>
       </trpc.Provider>
     </GestureHandlerRootView>
