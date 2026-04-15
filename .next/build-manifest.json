@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/kRQ7Uet3YUWP19Sj7cHgT/_buildManifest.js",
-    "static/kRQ7Uet3YUWP19Sj7cHgT/_ssgManifest.js"
+    "static/BLMWXB9XhntAVvpvoJ-ay/_buildManifest.js",
+    "static/BLMWXB9XhntAVvpvoJ-ay/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -27,7 +27,7 @@
       "static/chunks/webpack-179d38e12eb8427e.js",
       "static/chunks/framework-2b1f7a23d657eae4.js",
       "static/chunks/main-ab416b655ab12dfd.js",
-      "static/css/b6f18779d47d721d.css",
+      "static/css/2002acf80aed9244.css",
       "static/chunks/pages/_app-26f5890917895004.js"
     ],
     "/_error": [
@@ -36,12 +36,33 @@
       "static/chunks/main-ab416b655ab12dfd.js",
       "static/chunks/pages/_error-7a92967bea80186d.js"
     ],
+    "/admin/analytics": [
+      "static/chunks/webpack-179d38e12eb8427e.js",
+      "static/chunks/framework-2b1f7a23d657eae4.js",
+      "static/chunks/main-ab416b655ab12dfd.js",
+      "static/chunks/664-d254d21a6fe56bff.js",
+      "static/chunks/pages/admin/analytics-3bf75d299dd67a58.js"
+    ],
+    "/ai-assistant": [
+      "static/chunks/webpack-179d38e12eb8427e.js",
+      "static/chunks/framework-2b1f7a23d657eae4.js",
+      "static/chunks/main-ab416b655ab12dfd.js",
+      "static/chunks/664-d254d21a6fe56bff.js",
+      "static/chunks/pages/ai-assistant-733c1fc110ab6b2f.js"
+    ],
     "/dashboard": [
       "static/chunks/webpack-179d38e12eb8427e.js",
       "static/chunks/framework-2b1f7a23d657eae4.js",
       "static/chunks/main-ab416b655ab12dfd.js",
       "static/chunks/664-d254d21a6fe56bff.js",
-      "static/chunks/pages/dashboard-5b5b49c1cb2ed7b7.js"
+      "static/chunks/pages/dashboard-ec33c41c3b0c785c.js"
+    ],
+    "/global-operations": [
+      "static/chunks/webpack-179d38e12eb8427e.js",
+      "static/chunks/framework-2b1f7a23d657eae4.js",
+      "static/chunks/main-ab416b655ab12dfd.js",
+      "static/chunks/664-d254d21a6fe56bff.js",
+      "static/chunks/pages/global-operations-b7d8211ffe7cd73c.js"
     ],
     "/onboarding/checklist": [
       "static/chunks/webpack-179d38e12eb8427e.js",

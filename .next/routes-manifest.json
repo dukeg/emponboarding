@@ -36,10 +36,28 @@
       "namedRegex": "^/404(?:/)?$"
     },
     {
+      "page": "/admin/analytics",
+      "regex": "^/admin/analytics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/analytics(?:/)?$"
+    },
+    {
+      "page": "/ai-assistant",
+      "regex": "^/ai\\-assistant(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ai\\-assistant(?:/)?$"
+    },
+    {
       "page": "/dashboard",
       "regex": "^/dashboard(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/dashboard(?:/)?$"
+    },
+    {
+      "page": "/global-operations",
+      "regex": "^/global\\-operations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/global\\-operations(?:/)?$"
     },
     {
       "page": "/onboarding/checklist",
