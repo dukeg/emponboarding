@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 interface Document {
   id: string;
@@ -12,19 +11,10 @@ interface Document {
 }
 
 export default function Documents() {
-  const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
-      router.push('/');
-      return;
-    }
-    setUser(JSON.parse(userData));
-
-    // Mock documents data
     setDocuments([
       { id: '1', name: 'Government ID', description: 'Valid passport or driver\'s license', required: true, status: 'approved', uploadedDate: '2024-04-01' },
       { id: '2', name: 'Tax Form (W-4)', description: 'Federal tax withholding form', required: true, status: 'submitted', uploadedDate: '2024-04-02' },
@@ -32,7 +22,8 @@ export default function Documents() {
       { id: '4', name: 'Insurance Documents', description: 'Health insurance beneficiary forms', required: false, status: 'pending' },
       { id: '5', name: 'Direct Deposit Form', description: 'Banking information for payroll', required: true, status: 'submitted', uploadedDate: '2024-04-02' },
     ]);
-  }, [router]);
+    setIsLoading(false);
+  }, []);
 
   const handleFileUpload = (docId: string) => {
     setDocuments(documents.map(doc =>
@@ -45,14 +36,13 @@ export default function Documents() {
   const pendingCount = documents.filter(d => d.status === 'pending').length;
   const approvedCount = documents.filter(d => d.status === 'approved').length;
 
-  if (!user) return null;
+  if (isLoading) return null;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/emponboarding/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
             ← Back to Dashboard
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Document Upload</h1>
@@ -60,9 +50,7 @@ export default function Documents() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Status Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <p className="text-gray-600 text-sm font-medium">Pending</p>
@@ -80,7 +68,6 @@ export default function Documents() {
           </div>
         </div>
 
-        {/* Documents List */}
         <div className="space-y-4">
           {documents.map((doc) => (
             <div key={doc.id} className="bg-white rounded-lg shadow p-6">
@@ -136,7 +123,6 @@ export default function Documents() {
           ))}
         </div>
 
-        {/* Info Box */}
         <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h3 className="font-semibold text-blue-900 mb-2">Document Upload Guidelines</h3>
           <ul className="text-sm text-blue-800 space-y-1">

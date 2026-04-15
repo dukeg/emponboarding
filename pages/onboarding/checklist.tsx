@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 interface Task {
   id: string;
@@ -12,20 +11,11 @@ interface Task {
 }
 
 export default function Checklist() {
-  const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<string>('all');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
-      router.push('/');
-      return;
-    }
-    setUser(JSON.parse(userData));
-
-    // Mock tasks data
     setTasks([
       { id: '1', title: 'Complete Employee Profile', description: 'Fill in your personal and professional information', category: 'Admin', status: 'completed', dueDate: '2024-04-01' },
       { id: '2', title: 'IT Setup & Equipment', description: 'Receive laptop, phone, and access credentials', category: 'IT', status: 'in-progress', dueDate: '2024-04-05' },
@@ -35,7 +25,8 @@ export default function Checklist() {
       { id: '6', title: 'Security Training', description: 'Complete mandatory security and compliance training', category: 'Training', status: 'pending', dueDate: '2024-04-12' },
       { id: '7', title: 'Set Up Workspace', description: 'Arrange your desk and office supplies', category: 'Admin', status: 'pending', dueDate: '2024-04-03' },
     ]);
-  }, [router]);
+    setIsLoading(false);
+  }, []);
 
   const handleToggleTask = (id: string) => {
     setTasks(tasks.map(task => 
@@ -52,14 +43,13 @@ export default function Checklist() {
   const categories = ['all', ...new Set(tasks.map(t => t.category))];
   const completionPercentage = Math.round((tasks.filter(t => t.status === 'completed').length / tasks.length) * 100);
 
-  if (!user) return null;
+  if (isLoading) return null;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/emponboarding/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
             ← Back to Dashboard
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Onboarding Checklist</h1>
@@ -67,9 +57,7 @@ export default function Checklist() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Progress Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Your Progress</h2>
@@ -86,7 +74,6 @@ export default function Checklist() {
           </p>
         </div>
 
-        {/* Filter Tabs */}
         <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
           {categories.map(category => (
             <button
@@ -103,7 +90,6 @@ export default function Checklist() {
           ))}
         </div>
 
-        {/* Tasks List */}
         <div className="space-y-4">
           {filteredTasks.map((task) => (
             <div

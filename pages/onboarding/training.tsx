@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 interface TrainingSession {
   id: string;
@@ -15,19 +14,10 @@ interface TrainingSession {
 }
 
 export default function Training() {
-  const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const [sessions, setSessions] = useState<TrainingSession[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
-      router.push('/');
-      return;
-    }
-    setUser(JSON.parse(userData));
-
-    // Mock training sessions
     setSessions([
       {
         id: '1',
@@ -74,19 +64,19 @@ export default function Training() {
         status: 'scheduled'
       },
     ]);
-  }, [router]);
+    setIsLoading(false);
+  }, []);
 
   const upcomingSessions = sessions.filter(s => s.status === 'scheduled');
   const completedSessions = sessions.filter(s => s.status === 'completed');
 
-  if (!user) return null;
+  if (isLoading) return null;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link href="/emponboarding/dashboard" className="text-blue-600 hover:text-blue-700 font-medium">
             ← Back to Dashboard
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Training Schedule</h1>
@@ -94,9 +84,7 @@ export default function Training() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Upcoming Sessions */}
         <div className="mb-12">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Upcoming Sessions</h2>
           <div className="space-y-4">
@@ -147,7 +135,6 @@ export default function Training() {
           </div>
         </div>
 
-        {/* Completed Sessions */}
         {completedSessions.length > 0 && (
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-6">Completed Sessions</h2>
@@ -169,7 +156,6 @@ export default function Training() {
           </div>
         )}
 
-        {/* Info Box */}
         <div className="mt-12 bg-purple-50 border border-purple-200 rounded-lg p-6">
           <h3 className="font-semibold text-purple-900 mb-2">Training Tips</h3>
           <ul className="text-sm text-purple-800 space-y-2">

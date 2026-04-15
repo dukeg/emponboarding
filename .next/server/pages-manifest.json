@@ -2,5 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/404": "pages/404.js",
+  "/dashboard": "pages/dashboard.js",
+  "/": "pages/index.js",
+  "/onboarding/checklist": "pages/onboarding/checklist.js",
+  "/onboarding/documents": "pages/onboarding/documents.js",
+  "/onboarding/training": "pages/onboarding/training.js"
 }
